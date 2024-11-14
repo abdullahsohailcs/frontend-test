@@ -122,48 +122,49 @@ const SearchComponent: React.FC = () => {
             ))}
           </div>
 
-          <div className="space-y-4 overflow-y-scroll max-h-[400px] flex-grow relative">
-            {/* Show spinner with overlay when loading and there are results */}
-            {loading && results.length > 0 && (
-              <div className="absolute inset-0 bg-white bg-opacity-50 z-10 flex justify-center items-center">
-                <div className="w-10 h-10 border-solid rounded-full animate-spin spinner"></div>
-              </div>
-            )}
+          <div className="space-y-4 overflow-y-auto flex-grow relative">
+  {/* Show spinner with overlay when loading and there are results */}
+  {loading && results.length > 0 && (
+    <div className="absolute inset-0 bg-white bg-opacity-50 z-10 flex justify-center items-center">
+      <div className="w-10 h-10 border-solid rounded-full animate-spin spinner"></div>
+    </div>
+  )}
 
-            {/* Show spinner without overlay when loading and there are no results */}
-            {loading && results.length === 0 && (
-              <div className="absolute inset-0 flex justify-center items-center z-10">
-                <div className="w-10 h-10 border-solid rounded-full animate-spin spinner"></div>
-              </div>
-            )}
+  {/* Show spinner without overlay when loading and there are no results */}
+  {loading && results.length === 0 && (
+    <div className="absolute inset-0 flex justify-center items-center z-10">
+      <div className="w-10 h-10 border-solid rounded-full animate-spin spinner"></div>
+    </div>
+  )}
 
-            {/* Show the content or error */}
-            <div className={`${loading ? 'opacity-50' : ''} flex flex-col justify-center items-center`}>
-              {error ? (
-                <div className="flex justify-center items-center" style={{paddingTop:'70px'}}>
-                  <ErrorSVG />
-                </div>
-              ) : results.length > 0 ? (
-                <div className="card-container">
-                  {results.map((item, index) => (
-                    <Card
-                      key={index}
-                      title={item.title}
-                      description={item.description}
-                      image={item.image}
-                      url={item.url}
-                    />
-                  ))}
-                </div>
-              ) : (
-                !loading && (
-                  <div className="flex justify-center items-center h-full w-full" style={{paddingTop:'70px'}}>
-                    <NoresultSVG />
-                  </div>
-                )
-              )}
-            </div>
-          </div>
+  {/* Show the content or error */}
+  <div className={`${loading ? 'opacity-50' : ''} flex flex-col justify-center items-center`}>
+    {error ? (
+      <div className="flex justify-center items-center" style={{ paddingTop: '70px' }}>
+        <ErrorSVG />
+      </div>
+    ) : results.length > 0 ? (
+      <div className="card-container flex flex-col w-full gap-4">
+        {results.map((item, index) => (
+          <Card
+            key={index}
+            title={item.title}
+            description={item.description}
+            image={item.image}
+            url={item.url}
+          />
+        ))}
+      </div>
+    ) : (
+      !loading && (
+        <div className="flex justify-center items-center h-full w-full" style={{ paddingTop: '70px' }}>
+          <NoresultSVG />
+        </div>
+      )
+    )}
+  </div>
+</div>
+
 
         </div>
       </div>
