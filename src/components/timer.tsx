@@ -1,4 +1,3 @@
-// src/components/Timer.tsx
 import React, { useEffect, useState } from 'react';
 
 const Timer: React.FC = () => {
@@ -12,12 +11,10 @@ const Timer: React.FC = () => {
     return () => clearInterval(interval); // Clean up interval on unmount
   }, []);
 
-  const formatTime = (date: Date) => {
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    const seconds = date.getSeconds().toString().padStart(2, '0');
-    const milliseconds = date.getMilliseconds().toString().padStart(3, '0');
-    return `${hours}:${minutes}:${seconds}:${milliseconds}`;
+  // Format time as HH:MM:SS:MMM
+  const formatTime = (date: Date): string => {
+    const pad = (num: number, length: number) => num.toString().padStart(length, '0');
+    return `${pad(date.getHours(), 2)}:${pad(date.getMinutes(), 2)}:${pad(date.getSeconds(), 2)}:${pad(date.getMilliseconds(), 3)}`;
   };
 
   return (
