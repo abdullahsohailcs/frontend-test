@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+.tag {
+  background: #F2F4F8;  /* Normal state background */
+  transition: background 0.3s ease;
+  color: #6833FF;
+  gap: 8px;  /* Gap between content (in this case, just the text) */
+  height: 32px;
+  text-align: center;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;  /* Font-family set to Poppins */
+  padding: 6px 16px;
+  border-radius: 14px;  /* Rounded corners */
+  font-size: 14px;
+  font-weight: 500;  /* Set font weight to 500 */
+  line-height: 18px;  /* Line height of 18px */
+  display: inline-flex; /* Use inline-flex to maintain width and height */
+  align-items: center;  /* Vertically center the text */
+  justify-content: center; /* Horizontally center the text */
+  margin-right: 7px;
+  letter-spacing: 0.75px;
+  text-align: center;
+}
+
+.tag:hover {
+  background: #865CFF;
+  color: #FFFFFF;
+}
+
+.tag.active {
+  background: #6833FF;  /* Active state background */
+  color: #FFFFFF;  /* Text color white when active */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .tag {
+    font-size: 12px;  /* Smaller font size on smaller screens */
+    padding: 5px 12px; /* Smaller padding for compact size */
+    height: 28px;  /* Adjust height for smaller screens */
+    border-radius: 12px; /* Slightly smaller rounded corners */
+  }
+
+  .tag svg {
+    width: 18px; /* Adjust SVG size for smaller screens */
+    height: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .tag {
+    font-size: 10px;  /* Even smaller font size for very small screens */
+    padding: 4px 8px;  /* Smaller padding */
+    height: 24px;  /* Adjust height for very small screens */
+    border-radius: 10px; /* Slightly smaller rounded corners */
+  }
+
+  .tag svg {
+    width: 16px; /* Even smaller SVG size for very small screens */
+    height: 16px;
+  }
+}

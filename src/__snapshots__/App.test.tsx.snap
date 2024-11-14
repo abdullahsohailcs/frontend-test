@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component renders correctly and matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="min-h-screen flex flex-col items-center justify-center"
+    style="background: rgb(237, 242, 247); padding-top: 140px;"
+  >
+    <div>
+      Search Component
+    </div>
+    <div
+      class="flex items-center justify-between w-full mt-4"
+      style="max-width: 100%; padding: 48px 49.72px 49.72px 49.72px;"
+    >
+      <div>
+        Timer Component
+      </div>
+      <div
+        style="width: 82px; height: 44.28px; display: flex; align-items: center; justify-content: center; color: rgb(213, 217, 222); font-size: 18px; font-weight: bold;"
+      >
+        DC
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

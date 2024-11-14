@@ -13,6 +13,10 @@
   }
 }
 
+input:focus-visible {
+  border: 3px solid #6833FF;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -34,5 +38,34 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* src/styles/responsive.css */
+.responsive-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer-container,
+.dc-container {
+  width: auto;  /* Keep them auto for default layout */
+}
+
+/* For smaller screens, stack the elements */
+@media (max-width: 350px) {
+  .responsive-container {
+    flex-direction: column;
+  }
+
+  .timer-container,
+  .dc-container {
+    margin-bottom: 10px;  /* Space between stacked items */
+  }
+
+  .dc-container {
+    text-align: center; /* Center the 'DC' text when stacked */
   }
 }

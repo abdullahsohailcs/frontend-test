@@ -1,0 +1,98 @@
+/* src/styles/card.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+.card {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    padding:20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    flex-wrap: nowrap; /* Prevents wrapping within the card */
+}
+
+.card:hover {
+    background-color: #F2F4F8;
+}
+
+.card-image {
+    flex: 0 0 76px; /* Keeps the image at a fixed size */
+    width: 76px;
+    height: 76px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: calc(100% - 150px); /* Restrict width to leave space for web pointer */
+}
+
+.card-title {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin: 0;
+    font-size: 20px;
+    font-family: 'Poppins';
+    line-height: 26px;
+}
+
+.card-description {
+    margin: 0;
+    color: #666;
+    font-size: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 90%; /* Ensure that description does not take too much space */
+    flex-shrink: 1; /* Prevents description from expanding too much */
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.75px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.card-webpointer-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    flex-shrink: 0; /* Prevents it from being pushed out of view */
+}
+
+.card-link {
+    color: #865CFF;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.card-webpointer-container {
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.card:hover .card-webpointer-container {
+  opacity: 1; /* Visible when the card is hovered */
+}
