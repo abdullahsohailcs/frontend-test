@@ -3,9 +3,9 @@ import axios, { AxiosError, CancelTokenSource } from 'axios';
 import '../styles/searchcomponent.css';
 import NoresultSVG from './svg/noresult';
 import ErrorSVG from './svg/error';
-import SearchIcon from './svg/search';
 import Card from './card';
 import Tag from './tag';
+import SearchBar from './searchbar';
 
 const SearchComponent: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -97,90 +97,67 @@ const SearchComponent: React.FC = () => {
         }}
       >
         <div className="pt-2 pl-2 pr-2 flex flex-col space-y-3 h-full">
-          <div className="relative">
-            <SearchIcon />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search what technologies we are using at DC..."
-              className="border rounded-[12px] p-6 pl-12 w-full h-[74px]"
-              style={{
-                fontFamily: 'Poppins',
-                backgroundColor: '#F2F4F8',
-                fontSize: '20px',
-                fontWeight: '400',
-                lineHeight: '26px',
-                height: '27px',
-                border: error
-                  ? '3px solid #ED2E7E'
-                  : searchTerm
-                  ? '3px solid #6833FF'
-                  : '3px solid #E0E0E0',
-                outline: 'none',
-              }}
-            />
+          
+          {/* Use the SearchBar component */}
+          <SearchBar 
+          searchTerm={searchTerm} 
+          setSearchTerm={setSearchTerm} 
+          error={!!error} // Pass error as a boolean
+        />
+
+          <div className="flex flex-wrap gap-2 pt-2 pb-2 tag-component">
+            {tags.map((tag) => (
+              <Tag
+                key={tag}
+                text={tag}
+                isActive={activeTag === tag}
+                onClick={() => handleTagClick(tag)}
+              />
+            ))}
           </div>
 
-          
-<div className="flex flex-wrap gap-2 pt-2 pb-2 tag-component">
-  {tags.map((tag) => (
-    <Tag
-      key={tag}
-      text={tag}
-      isActive={activeTag === tag}
-      onClick={() => handleTagClick(tag)}
-      
-    />
-  ))}
-</div>
+          <div className="space-y-4 overflow-y-scroll max-h-[400px] flex-grow relative">
+            {/* Show spinner with overlay when loading and there are results */}
+            {loading && results.length > 0 && (
+              <div className="absolute inset-0 bg-white bg-opacity-50 z-10 flex justify-center items-center">
+                <div className="w-10 h-10 border-solid rounded-full animate-spin spinner"></div>
+              </div>
+            )}
 
-          
-  <div className="space-y-4 overflow-y-scroll max-h-[400px] flex-grow relative">
+            {/* Show spinner without overlay when loading and there are no results */}
+            {loading && results.length === 0 && (
+              <div className="absolute inset-0 flex justify-center items-center z-10">
+                <div className="w-10 h-10 border-solid rounded-full animate-spin spinner"></div>
+              </div>
+            )}
 
-  {/* Show spinner with overlay when loading and there are results */}
-  {loading && results.length > 0 && (
-    <div className="absolute inset-0 bg-white bg-opacity-50 z-10 flex justify-center items-center">
-      <div className="w-10 h-10 border-solid rounded-full animate-spin spinner"></div>
-    </div>
-  )}
-
-  {/* Show spinner without overlay when loading and there are no results */}
-  {loading && results.length === 0 && (
-    <div className="absolute inset-0 flex justify-center items-center z-10">
-      <div className="w-10 h-10 border-solid rounded-full animate-spin spinner"></div>
-    </div>
-  )}
-
-  {/* Show the content or error */}
-  <div className={`${loading ? 'opacity-50' : ''} flex flex-col justify-center items-center`}>
-    {error ? (
-      <div className="flex justify-center items-center" style={{paddingTop:'70px'}}>
-        <ErrorSVG />
-      </div>
-    ) : results.length > 0 ? (
-      <div className="card-container"> {/* Add the card container here */}
-        {results.map((item, index) => (
-          <Card
-            key={index}
-            title={item.title}
-            description={item.description}
-            image={item.image}
-            url={item.url}
-          />
-        ))}
-      </div>
-    ) : (
-      !loading && (
-        <div className="flex justify-center items-center h-full w-full" style={{paddingTop:'70px'}}>
-          <NoresultSVG />
-        </div>
-      )
-    )}
-  </div>
-</div>
-
-
+            {/* Show the content or error */}
+            <div className={`${loading ? 'opacity-50' : ''} flex flex-col justify-center items-center`}>
+              {error ? (
+                <div className="flex justify-center items-center" style={{paddingTop:'70px'}}>
+                  <ErrorSVG />
+                </div>
+              ) : results.length > 0 ? (
+                <div className="card-container">
+                  {results.map((item, index) => (
+                    <Card
+                      key={index}
+                      title={item.title}
+                      description={item.description}
+                      image={item.image}
+                      url={item.url}
+                    />
+                  ))}
+                </div>
+              ) : (
+                !loading && (
+                  <div className="flex justify-center items-center h-full w-full" style={{paddingTop:'70px'}}>
+                    <NoresultSVG />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
 
         </div>
       </div>

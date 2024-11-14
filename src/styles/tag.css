@@ -1,25 +1,24 @@
+/* src/styles/tag.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 .tag {
-  background: #F2F4F8;  /* Normal state background */
-  transition: background 0.3s ease;
+  background: #F2F4F8;
   color: #6833FF;
-  gap: 8px;  /* Gap between content (in this case, just the text) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   height: 32px;
-  text-align: center;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;  /* Font-family set to Poppins */
   padding: 6px 16px;
-  border-radius: 14px;  /* Rounded corners */
+  border-radius: 14px;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  font-weight: 500;  /* Set font weight to 500 */
-  line-height: 18px;  /* Line height of 18px */
-  display: inline-flex; /* Use inline-flex to maintain width and height */
-  align-items: center;  /* Vertically center the text */
-  justify-content: center; /* Horizontally center the text */
-  margin-right: 7px;
+  font-weight: 500;
+  line-height: 18px;
   letter-spacing: 0.75px;
   text-align: center;
+  margin-right: 7px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .tag:hover {
@@ -28,35 +27,35 @@
 }
 
 .tag.active {
-  background: #6833FF;  /* Active state background */
-  color: #FFFFFF;  /* Text color white when active */
+  background: #6833FF;
+  color: #FFFFFF;
 }
 
 /* Responsive design for smaller screens */
 @media (max-width: 600px) {
   .tag {
-    font-size: 12px;  /* Smaller font size on smaller screens */
-    padding: 5px 12px; /* Smaller padding for compact size */
-    height: 28px;  /* Adjust height for smaller screens */
-    border-radius: 12px; /* Slightly smaller rounded corners */
+    font-size: 12px;
+    padding: 5px 12px;
+    height: 28px;
+    border-radius: 12px;
   }
 
   .tag svg {
-    width: 18px; /* Adjust SVG size for smaller screens */
+    width: 18px;
     height: 18px;
   }
 }
 
 @media (max-width: 400px) {
   .tag {
-    font-size: 10px;  /* Even smaller font size for very small screens */
-    padding: 4px 8px;  /* Smaller padding */
-    height: 24px;  /* Adjust height for very small screens */
-    border-radius: 10px; /* Slightly smaller rounded corners */
+    font-size: 10px;
+    padding: 4px 8px;
+    height: 24px;
+    border-radius: 10px;
   }
 
   .tag svg {
-    width: 16px; /* Even smaller SVG size for very small screens */
+    width: 16px;
     height: 16px;
   }
 }
