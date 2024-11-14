@@ -18,7 +18,7 @@ const Timer: React.FC = () => {
   };
 
   return (
-    <div
+    <div data-testid="timer"
       className="timer text-sm font-mono text-white px-4 py-1 rounded-lg flex items-center"
       style={{
         backgroundColor: '#333',
