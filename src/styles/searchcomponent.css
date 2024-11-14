@@ -2,7 +2,7 @@
 .card-container {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Add space between cards */
+  gap: 10px; /* Add space between cards */
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -29,7 +29,7 @@
   color: #999FAA;
   display: flex;
   justify-content: space-between;
-  padding: 16px;
+  padding: 15px 0px 16px 24px;
   align-items: center;
 }
 

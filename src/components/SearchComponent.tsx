@@ -18,6 +18,7 @@ const SearchComponent: React.FC = () => {
   const tags = ["Languages", "Build", "Design", "Cloud"];
 
   useEffect(() => {
+    // Set up the debouncing for search term
     const timer = setTimeout(() => {
       setDebouncedTerm(searchTerm);
     }, 500);
@@ -75,7 +76,12 @@ const SearchComponent: React.FC = () => {
 
   const handleTagClick = (tagText: string) => {
     setSearchTerm(tagText);
-    setActiveTag(tagText);
+    setActiveTag(tagText); // Set the clicked tag as active
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setActiveTag(null); // Make the tag passive as soon as the user starts typing
   };
 
   const calculateMaxHeight = () => {
@@ -100,10 +106,10 @@ const SearchComponent: React.FC = () => {
           
           {/* Use the SearchBar component */}
           <SearchBar 
-          searchTerm={searchTerm} 
-          setSearchTerm={setSearchTerm} 
-          error={!!error} // Pass error as a boolean
-        />
+            searchTerm={searchTerm} 
+            setSearchTerm={handleSearchChange} 
+            error={!!error} // Pass error as a boolean
+          />
 
           <div className="flex flex-wrap gap-2 pt-2 pb-2 tag-component">
             {tags.map((tag) => (
