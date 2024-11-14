@@ -57,9 +57,10 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
-    text-overflow: ellipsis;
-    max-width: 90%; /* Ensure that description does not take too much space */
-    flex-shrink: 1; /* Prevents description from expanding too much */
+    white-space: nowrap; /* Prevents the description from wrapping to multiple lines */
+    overflow: hidden; /* Ensures content doesn't overflow */
+    text-overflow: ellipsis; /* Adds "..." when the text is truncated */
+    max-width: 100%; /* Ensures that the description doesn't take too much space */
 }
 
 .card-webpointer-container {
