@@ -16,6 +16,7 @@ const SearchComponent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const tags = ["Languages", "Build", "Design", "Cloud"];
+  let cancelToken: CancelTokenSource | null = null;
 
   useEffect(() => {
     // Set up the debouncing for search term
@@ -33,8 +34,6 @@ const SearchComponent: React.FC = () => {
       setResults([]);
       return;
     }
-
-    let cancelToken: CancelTokenSource;
 
     const fetchData = async () => {
       setLoading(true);
@@ -90,7 +89,7 @@ const SearchComponent: React.FC = () => {
   };
 
   return (
-    <>
+    <div data-testid="search-component">
       <div
         className="pt-4 pr-4 pl-4 bg-white w-full sm:w-[90%] md:w-[690px] max-w-full mx-auto"
         style={{
@@ -170,7 +169,7 @@ const SearchComponent: React.FC = () => {
       </div>
 
       <div className="pl-6 pt-4 pb-4 bg-white w-full sm:w-[90%] md:w-[690px] max-w-full mx-auto lowerbox">
-        <p className="text-left">
+        <div className="text-left">
           {error ? (
             <div className="mt-2" style={{ color: '#ED2E7E' }}>
               {error}
@@ -184,9 +183,9 @@ const SearchComponent: React.FC = () => {
           ) : (
             "No result"
           )}
-        </p>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timer Component matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="timer text-sm font-mono text-white px-4 py-1 rounded-lg flex items-center"
+    data-testid="timer"
+    style="background-color: rgb(51, 51, 51); box-shadow: 0px 4px 8px rgba(50, 50, 93, 0.2); max-width: 200px;"
+  >
+    18:57:20:071
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Timer Component matches the snapshot at a specific time 1`] = `
+<DocumentFragment>
+  <div
+    class="timer text-sm font-mono text-white px-4 py-1 rounded-lg flex items-center"
+    data-testid="timer"
+    style="background-color: rgb(51, 51, 51); box-shadow: 0px 4px 8px rgba(50, 50, 93, 0.2); max-width: 200px;"
+  >
+    05:00:00:000
+  </div>
+</DocumentFragment>
+`;

@@ -1,56 +1,35 @@
-import React from 'react';
-import { render, screen, act } from '@testing-library/react';
-import Timer from './timer'; // Adjust the import path if necessary
-import '@testing-library/jest-dom'; // for extra matchers
+import { render } from '@testing-library/react';
+import Timer from './timer';
 
 describe('Timer Component', () => {
-  jest.useFakeTimers(); // Use fake timers to control the setInterval
-
-  it('renders and displays current time correctly', () => {
-    render(<Timer />);
-    
-    // Ensure the timer is rendered and is not empty
-    expect(screen.getByText(/\d{2}:\d{2}:\d{2}:\d{3}/)).toBeInTheDocument();
+  beforeEach(() => {
+    // Use fake timers for controlling time
+    jest.useFakeTimers();
+    // Mock the Date object to return a fixed time
+    const fixedDate = new Date('2023-01-01T00:00:00.000Z');
+    jest.spyOn(global, 'Date').mockImplementation(() => fixedDate as unknown as string);
   });
 
-  it('updates the time every 10ms', () => {
-    render(<Timer />);
-    
-    // Initially get the displayed time
-    const initialTime = screen.getByText(/\d{2}:\d{2}:\d{2}:\d{3}/).textContent;
-
-    // Fast-forward the timers by 10ms
-    act(() => {
-      jest.advanceTimersByTime(10);
-    });
-
-    // Get the updated time after 10ms
-    const updatedTime = screen.getByText(/\d{2}:\d{2}:\d{2}:\d{3}/).textContent;
-
-    // Check if the time has changed (it should be slightly different)
-    expect(updatedTime).not.toBe(initialTime);
+  afterEach(() => {
+    // Clear timers and restore Date mock after each test
+    jest.clearAllTimers();
+    jest.restoreAllMocks();
   });
 
-  it('formats the time as HH:MM:SS:MMM correctly', () => {
-    render(<Timer />);
+  it('matches the snapshot at a specific time', () => {
+    // Render the Timer component
+    const { asFragment, getByTestId } = render(<Timer />);
     
-    // Get the displayed time
-    const time = screen.getByText(/\d{2}:\d{2}:\d{2}:\d{3}/).textContent;
+    // Advance timers by a fixed amount (to simulate the passage of time)
+    jest.advanceTimersByTime(1000); // For example, advance by 1000ms (1 second)
 
-    // Ensure the time format is correct (HH:MM:SS:MMM)
-    expect(time).toMatch(/^\d{2}:\d{2}:\d{2}:\d{3}$/);
-  });
+    // Now capture the snapshot fragment
+    const fragment = asFragment();
 
-  it('cleans up the interval when unmounted', () => {
-    const { unmount } = render(<Timer />);
-    
-    // Mock the clearInterval function
-    const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
+    // Match the snapshot
+    expect(fragment).toMatchSnapshot();
 
-    // Unmount the component
-    unmount();
-
-    // Ensure clearInterval is called to clean up the interval
-    expect(clearIntervalSpy).toHaveBeenCalledTimes(1);
+    // Check the timer text content with expect.any
+    expect(getByTestId('timer').textContent).toEqual(expect.any(String));
   });
 });

@@ -1,39 +1,32 @@
 import React from 'react';
-import SearchIcon from './svg/search';
+import { render } from '@testing-library/react';
+import SearchBar from './SearchBar';
 
-interface SearchBarProps {
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-  error: boolean; // Add error prop to indicate error state
-}
+// Mock the SearchIcon component as we don't need to test it in this snapshot
+jest.mock('./svg/search', () => () => <div>SearchIcon</div>);
 
-const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm, error }) => {
-  return (
-    <div className="relative">
-      <SearchIcon />
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search what technologies we are using at DC..."
-        className="border rounded-[12px] p-6 pl-12 w-full h-[74px]"
-        style={{
-          fontFamily: 'Poppins',
-          backgroundColor: '#F2F4F8',
-          fontSize: '20px',
-          fontWeight: '400',
-          lineHeight: '26px',
-          height: '27px',
-          border: error
-            ? '3px solid #ED2E7E' // Red border if error
-            : searchTerm
-            ? '3px solid #6833FF'
-            : '3px solid #E0E0E0',
-          outline: 'none',
-        }}
-      />
-    </div>
-  );
-};
+describe('SearchBar', () => {
+  it('should match the snapshot', () => {
+    const mockSetSearchTerm = jest.fn();
+    
+    // Render the SearchBar component
+    const { asFragment } = render(
+      <SearchBar searchTerm="test" setSearchTerm={mockSetSearchTerm} error={false} />
+    );
+    
+    // Take a snapshot of the rendered component
+    expect(asFragment()).toMatchSnapshot();
+  });
 
-export default SearchBar;
+  it('should match the snapshot when there is an error', () => {
+    const mockSetSearchTerm = jest.fn();
+    
+    // Render the SearchBar component with error state
+    const { asFragment } = render(
+      <SearchBar searchTerm="test" setSearchTerm={mockSetSearchTerm} error={true} />
+    );
+    
+    // Take a snapshot of the rendered component
+    expect(asFragment()).toMatchSnapshot();
+  });
+});
