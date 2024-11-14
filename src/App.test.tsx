@@ -1,14 +1,34 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
-
-// Mocking child components for simplicity in App testing
-jest.mock('./components/SearchComponent', () => () => <div>Search Component</div>);
-jest.mock('./components/timer', () => () => <div>Timer Component</div>);
+import '@testing-library/jest-dom';
 
 describe('App Component', () => {
-  it('renders correctly and matches snapshot', () => {
-    const { asFragment } = render(<App />);
-    expect(asFragment()).toMatchSnapshot();
+  test('renders SearchComponent', () => {
+    render(<App />);
+    const searchComponent = screen.getByTestId('search-component');
+    expect(searchComponent).toBeInTheDocument();
+  });
+
+  test('renders Timer component', () => {
+    render(<App />);
+    const timer = screen.getByTestId('timer');
+    expect(timer).toBeInTheDocument();
+  });
+
+  test('renders Logo component', () => {
+    render(<App />);
+    const logo = screen.getByTestId('logo');
+    expect(logo).toBeInTheDocument();
+  });
+
+  test('has correct styles', () => {
+    const { container } = render(<App />);
+    const appDiv = container.firstChild;
+    
+    // Check if background color is correct
+    expect(appDiv).toHaveStyle('background: #EDF2F7');
+    
+    // Check if the padding is correct
+    expect(appDiv).toHaveStyle('padding-top: 142px');
   });
 });

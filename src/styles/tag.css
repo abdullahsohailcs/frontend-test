@@ -59,3 +59,7 @@
     height: 16px;
   }
 }
+
+.tag:focus {
+  outline: 1px solid #6833FF; /* You can adjust the thickness as needed */
+}
