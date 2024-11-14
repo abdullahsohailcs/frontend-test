@@ -1,4 +1,15 @@
-The search app
+# The search app
+
+Live Application: https://frontend-test-blush-tau.vercel.app/
+
+The search app is a simple app to seach data from api if it has name, image and a description.
+
+# Components
+It has four component 
+ 1- Search Bar
+ 2- Search Box
+ 3- Result Cards
+ 4- Tags
 
 # Getting Started with Create React App
 
