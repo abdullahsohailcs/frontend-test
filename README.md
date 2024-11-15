@@ -11,6 +11,10 @@ It has four component
  3- Result Cards
  4- Tags
 
+For project I have used CSS, Tailwind CSS, Typescript
+API calls are done by axios. 
+For testing timer function I have written a snapshot test.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
